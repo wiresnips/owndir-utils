@@ -1,7 +1,8 @@
 {
   "name": "owndir-utils",
   "workspaces": [
-    "components/materialui-tabview"
+    "components/materialui-tabview",
+    "plugins/*"
   ],
   "private": true
 }

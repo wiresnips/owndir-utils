@@ -1,9 +1,25 @@
 
-
 Creates a [material-ui TabContext](https://mui.com/material-ui/react-tabs/#experimental-api), where tabs can be addressed via `#anchors`.
 
+## install
+
+add the following to `package.json`:
+```json
+{
+  "dependencies": {
+    "mui-tabview": "https://github.com/wiresnips/owndir-utils.git#workspace=materialui-tabview"
+  }
+}
+```
+
+
+## usage
 
 ```jsx
+
+import TabView from 'mui-tabview'
+
+
 <TabView tabs={[
     {
       label: "Tab-1",

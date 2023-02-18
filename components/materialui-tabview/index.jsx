@@ -19,18 +19,18 @@ function initAnchor (tab, index) {
 }
 
 export default function TabView ({tabs}) {
+
+  if (_.isEmpty(tabs)) {
+    return null;
+  }
+
   tabs.forEach(initAnchor);
   const allAnchors = tabs.map(entry => entry.anchor)
 
   const location = useLocation();
   const hash = location.hash.slice(1);
   const anchor = allAnchors.includes(hash) ? hash : allAnchors[0];
-
   const navigate = useNavigate();
-
-  if (_.isEmpty(tabs)) {
-    return null;
-  }
 
   return <Box display='flex' flexDirection='column' height="100%">
 
