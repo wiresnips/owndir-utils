@@ -1,6 +1,6 @@
 {
   "name": "owndir-utils",
   "workspaces": [
-    "components/materialui-tabview"
+    "components/*"
   ]
 }
