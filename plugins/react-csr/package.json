@@ -1,0 +1,14 @@
+{
+  "name": "owndir-plugin-react-ssr",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Ben Ells",
+  "license": "",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+  }
+}
