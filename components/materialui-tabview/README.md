@@ -7,11 +7,11 @@ add the following to `package.json`:
 ```json
 {
   "dependencies": {
-    "mui-tabview": "https://github.com/wiresnips/owndir-utils.git#workspace=materialui-tabview"
+    "mui-tabview": "@owndir/materialui-tabview"
+    // "mui-tabview": "https://github.com/wiresnips/owndir-utils.git#workspace=materialui-tabview"
   }
 }
 ```
-
 
 ## usage
 

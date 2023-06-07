@@ -1,6 +1,6 @@
 {
-  "name": "materialui-tabview",
-  "version": "0",
+  "name": "@owndir/materialui-tabview",
+  "version": "0.0.1",
   "dependencies": {
     "react-router-dom": "^6.4.2",
     "@emotion/react": "^11.10.5",
