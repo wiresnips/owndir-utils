@@ -15,12 +15,10 @@ function favicon (icon) {
 
 module.exports = function (owndir) {
   owndir.O.routes.push(
-    ["/favicon.ico",
-      ["get", async function (req, res, next) {
+    ["get", "/favicon.ico",
+      async function (req, res, next) {
         res.setHeader("content-type", "image/svg+xml")
         res.send(favicon(this.favicon))
-      }]
-    ]
-  )
+      }])
 }
 

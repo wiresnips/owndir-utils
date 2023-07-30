@@ -24,14 +24,14 @@ function CssPlugin (owndir) {
 		return cssText.join('\n\n')
 	}
 
-	owndir.O.routes.push(['/style.css', ['get', 
+	owndir.O.routes.push(['get', '/style.css',
 		async function (req, res, next) {
 			const css = await this.css();
 			res.type("text/css");
 			res.send(css);
 			res.end();
 		}
-	]]);
+	]);
 }
 CssPlugin.propagate = true;
 

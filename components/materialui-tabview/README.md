@@ -8,6 +8,7 @@ add the following to `package.json`:
 {
   "dependencies": {
     "mui-tabview": "@owndir/materialui-tabview"
+    // this only works where git is available (ie, it does NOT work on android)
     // "mui-tabview": "https://github.com/wiresnips/owndir-utils.git#workspace=materialui-tabview"
   }
 }
