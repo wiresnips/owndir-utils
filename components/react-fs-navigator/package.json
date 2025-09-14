@@ -1,5 +1,5 @@
 {
-  "name": "@owndir/react-fs-navigator",
+  "name": "@owndir-react-fs-navigator",
   "homepage": "https://github.com/wiresnips/owndir-utils/tree/main/components/react-fs-navigator",
   "version": "0.0.3",
   "dependencies": {

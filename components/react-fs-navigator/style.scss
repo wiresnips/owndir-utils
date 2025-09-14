@@ -1,0 +1,85 @@
+:root {
+  --fs-nav-bg-color: #dbeaef;
+  --fs-nav-highlight-color: #a3cad8;
+}
+
+#main {
+  background-color: white;
+  z-index: 0;
+}
+
+#frame > aside {
+  min-width: fit-content;
+  height: 100vh;
+  overflow-y: auto;
+
+  z-index: 0; /* default is auto, which appears in front of children with -1 */
+  background-color: var(--fs-nav-bg-color);
+  box-shadow: inset -2px -2px 4px var(--fs-nav-highlight-color);
+}
+
+nav > .fs-nav {
+  padding-right: 0.5rem;
+  overflow: hidden;
+}
+
+.fs-nav {
+  cursor: pointer;
+  white-space: nowrap;
+
+  li {
+    padding-left: 1rem;
+    &.fs-nav-file {
+      padding-left: 1.5rem;
+    }
+    
+    /* because the lists are nested, if we set the background color of the label, 
+       it _starts_ at the nesting level. This bullshit works around that. */
+    &.fs-nav-selected > .fs-nav-label {
+      position: relative; 
+      &::after {
+        content: '';
+        background-color: var(--fs-nav-highlight-color);
+        margin: 0 -10000px;
+        position: absolute;
+        inset: 0 0 0 0;
+        z-index: -1;
+      }
+    }
+
+    .fs-nav-label {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+
+      .fs-nav-name {
+        flex-grow: 1;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .fs-nav-toggle {
+    padding: 0.75rem;
+    margin: -0.25rem;
+    /* margin-top: -0.5rem; this 'fixes' a font-alignment problem caused by bad ascender and descender values in Nimbus Sans */
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: 30%;
+    transform: rotate(90deg);
+
+    /*
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+    */
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNi4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTMxMC42IDIzMy40YzEyLjUgMTIuNSAxMi41IDMyLjggMCA0NS4zbC0xOTIgMTkyYy0xMi41IDEyLjUtMzIuOCAxMi41LTQ1LjMgMHMtMTIuNS0zMi44IDAtNDUuM0wyNDIuNyAyNTYgNzMuNCA4Ni42Yy0xMi41LTEyLjUtMTIuNS0zMi44IDAtNDUuM3MzMi44LTEyLjUgNDUuMyAwbDE5MiAxOTJ6Ii8+PC9zdmc+");
+  
+    transition: all 0.25s;
+    &.fs-nav-closed {
+      transform: rotate(0);
+    }
+
+  }
+}
+

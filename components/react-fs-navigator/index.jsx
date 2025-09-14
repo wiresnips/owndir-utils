@@ -50,11 +50,9 @@ function FolderTreeChildren (props) {
       })
   }, [children]);
 
-
   // console.log("FolderTreeChildren", {children, files, folders})
 
-
-  return <ul className={'fs-navigator'}>
+  return <ul className={'fs-nav'}>
     {folders.map(folder => 
       <FolderTreeFolder
         {...props} 
@@ -65,11 +63,17 @@ function FolderTreeChildren (props) {
     {hide_files ? null : 
       files.map(file => {
         const isSelected = _.isEqual(file.path, selection?.path);
-        return <li key={file.name}>
-          <div className={`file-label ${isSelected ? 'selected' : ''}`} 
-               onClick={!selectHook ? null : () => selectHook(file)}
-          >
-            {file.name}
+
+        // console.log("FILE", file.name, isSelected, file, selection)
+
+        return <li className={`fs-nav-file ${isSelected ? 'fs-nav-selected' : ''}`}
+                   key={file.name}>
+          <div className='fs-nav-label'>
+            <span className={`fs-nav-name`}
+                 onClick={!selectHook ? null : () => selectHook(file)}
+            >
+              {file.name}
+            </span>
           </div>
         </li>})}
   </ul>
@@ -81,15 +85,17 @@ function FolderTreeFolder (props) {
   const isSelected = _.isEqual(fsNode.path, selection?.path);
   const [showChildren, setShowChildren] = useState(!!openAll);
 
-  return <li className={isSelected ? 'selected' : ''}>
-    <span className={`toggle ${showChildren ? '' : 'closed'}`}
-         onClick={() => setShowChildren(!showChildren)}>
-    </span>
-    
-    <span className={`folder-label`} 
-          onClick={!selectHook ? null : () => selectHook(fsNode)}>
-      {fsNode.name}
-    </span>
+  return <li className={`fs-nav-folder ${isSelected ? 'fs-nav-selected' : ''}`}>
+    <div className='fs-nav-label'>
+      <span className={`fs-nav-toggle ${showChildren ? '' : 'fs-nav-closed'}`}
+            onClick={() => setShowChildren(!showChildren)}>
+      </span>
+      
+      <span className={`fs-nav-name`} 
+            onClick={!selectHook ? null : () => selectHook(fsNode)}>
+        {fsNode.name}
+      </span>
+    </div>
 
     {showChildren
       ? <FolderTreeChildren {...props} />
@@ -110,16 +116,18 @@ export function FolderTree (props) {
     ignore.push(/^\.owndir/)
   }
 
-  return <FolderTreeChildren
-    {...props}
-    ignorePredicate={ignoreFn(ignore)}
-    selectHook={fsNode => {
-      setSelectedNode(fsNode);
+  return <nav>
+    <FolderTreeChildren
+      {...props}
+      ignorePredicate={ignoreFn(ignore)}
+      selectHook={fsNode => {
+        setSelectedNode(fsNode);
 
-      _.isFunction(selectHook) 
-        ? selectHook(fsNode)
-        : null;
-    }}
-    selection={selectedNode}
-  />
+        _.isFunction(selectHook) 
+          ? selectHook(fsNode)
+          : null;
+      }}
+      selection={selectedNode}
+    />
+  </nav>
 }
